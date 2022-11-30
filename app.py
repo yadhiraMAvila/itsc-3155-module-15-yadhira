@@ -11,7 +11,6 @@ load_dotenv()
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 
@@ -27,7 +26,7 @@ def list_all_movies():
 
 
 @app.get('/movies/<int:movie_id>')
-def get_single_movie(movie_id):
+def get_single_movie(movie_id: int):
     single_movie = movie_repository_singleton.get_movie_by_id(movie_id)
     return render_template('get_single_movie.html', movie=single_movie)
 
