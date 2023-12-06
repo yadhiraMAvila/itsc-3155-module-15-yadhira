@@ -43,7 +43,8 @@ def create_movie():
     rating = request.form.get('rating', 0, type=int)
     if title == '' or director == '' or rating < 1 or rating > 5:
         abort(400)
-    created_movie = movie_repository_singleton.create_movie(title, director, rating)
+    created_movie = movie_repository_singleton.create_movie(
+        title, director, rating)
     return redirect(f'/movies/{created_movie.movie_id}')
 
 
